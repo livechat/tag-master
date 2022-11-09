@@ -6,10 +6,6 @@
 
 **Tag Master** allows you to create, view, and delete [tags](https://www.livechatinc.com/kb/tagging-chats-and-tickets/) and [canned responses](https://www.livechatinc.com/kb/canned-responses/) in an easy and predictable way.
 
-# Preview
-
-![Alt Text](https://i.ibb.co/f9t4RFW/tagmaster.png)
-
 # App setup
 
 ## Before you start
