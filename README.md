@@ -1,4 +1,5 @@
 ![](https://i.ibb.co/4mQ3f7G/tag-master-icon.png)
+
 # Tag Master
 
 <!--It's a simple application that shows how to create an Agent App extension with the use of the **LiveChat Rest API**.-->
@@ -19,24 +20,25 @@ To use this application in your LiveChat dashboard, you'll need to create your o
 
 1. Go to [Apps](https://developers.livechatinc.com/console/apps) in [Developers Console](https://developers.livechatinc.com/console).
 2. Click **New App** and give it an **App Name**.
-3. Select *Agent App Widget* as the **App Template**.
+3. Select _Agent App Widget_ as the **App Template**.
 4. Go to **Develop -> Building Blocks**.
-5. Add **App Authorization** and mark it as *JavaScript App*. Your **Client Id** will be displayed there.
-6. Fetch the **Tag Master** app repository.
-7. In the app directory, do the following steps :
+5. Add **App Authorization** and mark it as _JavaScript App_. Your **Client Id** will be displayed there.
+6. Add scopes `canned_responses_read`, `canned_responses_write`, `tags--all:rw`, `tags--groups:rw` to the App scopes and API access box.
+7. Fetch the **Tag Master** app repository.
+8. In the app directory, do the following steps :
 
-    * Install dependencies (`npm install`).
-    * In your project, go to `src/utils/congif.js` and replace `client_id` with your own **Client Id** (the one from **Step 5**).
-    * Run your app (`npm start`).
-8. Add your app url (for example: `https://localhost:3000`) in these two locations:
+   - Install dependencies (`npm install`).
+   - In your project, go to `src/utils/congif.js` and replace `client_id` with your own **Client Id** (the one from **Step 5**).
+   - Run your app (`npm start`).
 
-    * **Redirect URI whitelist**
-    * **Agent App Widgets**
-9. In **Private installation**, click **Install app**. 
+9. Add your app url (for example: `https://localhost:3000`) in these two locations:
+
+   - **Redirect URI whitelist**
+   - **Agent App Widgets**
+
+10. In **Private installation**, click **Install app**.
 
 You should now be able to use **Tag Master** with LiveChat.
-
-
 
 # How it works
 
@@ -49,12 +51,13 @@ In order to pull data from our server, Rest API requires you to include an **acc
 You should also get familiar with [Authorization](https://docs.livechatinc.com/authorization/).
 
 # Feedback
+
 If you find some bugs, please create an issue in this repo. We will try to fix is ASAP ;)
 
 # If you're new to LiveChat
 
 **LiveChat** is an online customer service software with live support, help desk software, and web analytics capabilities. It's used by more than 27,000 companies all over the world. For more info, check out [LiveChat for Developers](https://developers.livechatinc.com/).
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
