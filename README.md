@@ -23,7 +23,7 @@ To use this application in your LiveChat dashboard, you'll need to create your o
 3. Select _Agent App Widget_ as the **App Template**.
 4. Go to **Develop -> Building Blocks**.
 5. Add **App Authorization** and mark it as _JavaScript App_. Your **Client Id** will be displayed there.
-6. Add scopes `canned_responses_read`, `canned_responses_write`, `tags--all:rw`, `tags--groups:rw` to the App scopes and API access box.
+6. Add scopes `canned_responses_read`, `canned_responses_write`, `tags--all:rw`, `tags--groups:rw` to the **App scopes and API access** box.
 7. Fetch the **Tag Master** app repository.
 8. In the app directory, do the following steps :
 
