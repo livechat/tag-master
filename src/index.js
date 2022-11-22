@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
 import ReactDOM from "react-dom";
-import { createGlobalStyle } from "styled-components";
 
 import AccountsSDK from "@livechat/accounts-sdk";
 
@@ -8,36 +7,7 @@ import "@livechat/design-system/dist/design-system.css";
 import config from "./utils/config";
 import App from "./components";
 import Spinner from "./components/Spinner";
-
-const GlobalStyle = createGlobalStyle`
-  ::-webkit-scrollbar {
-      display: none;
-  }
-  
-  .lc-tab--selected {
-    color: #4284F5;
-
-    &:hover {
-      color: #004bc2;
-    }
-  }
-
-  .lc-modal__body {
-    background-color: white;
-    border-bottom: solid 1px hsl(0,0%,90%);
-    border-top: solid 1px hsl(0,0%,90%);
-  }
-
-  .lc-input{
-    width: 100%;
-  }
-
-  .lc-modal__heading{
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 24px;
-  }
-`;
+import GlobalStyle from "./styles/GlobalStyle";
 
 const useLiveChat = ({ client_id, account_url }) => {
   const [accessToken, setAccessToken] = useState(null);

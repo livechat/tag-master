@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal, InputField } from "@livechat/design-system";
 import MaterialIcon from "material-icons-react";
-
 import "styled-components/macro";
+
 import api from "../../utils/api";
 
 const tagButtonStyle = `
@@ -146,7 +146,9 @@ export default ({
             Add
           </Button>
         </div>
-        <span css={tagHeadingStyle}>Added tags</span>
+        {Array.isArray(tags) && tags.length > 0 && (
+          <span css={tagHeadingStyle}>Added tags</span>
+        )}
         <div css={tagsContainerStyle}>
           {tags.map((tag, i) => {
             return (

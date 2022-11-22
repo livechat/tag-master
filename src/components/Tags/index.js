@@ -6,11 +6,11 @@ import {
   ActionModal,
 } from "@livechat/design-system";
 import MaterialIcon from "material-icons-react";
-import Spinner from "./Spinner";
+import Spinner from "../Spinner";
 import Tag from "./Tag";
 
 import "styled-components/macro";
-import api from "../utils/api";
+import api from "../../utils/api";
 
 const containerStyle = `
   display: grid;
@@ -95,7 +95,7 @@ export default ({ tags, update, accessToken }) => {
               >
                 Close
               </Button>
-              <Button primary size="large" onClick={onSubmit}>
+              <Button primary size="large" onClick={onSubmit} loading={loading}>
                 Add tag
               </Button>
             </React.Fragment>

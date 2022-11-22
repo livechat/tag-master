@@ -3,7 +3,7 @@ import { TabsWrapper, TabsList, Tab } from "@livechat/design-system";
 import "styled-components/macro";
 
 import Tags from "./Tags";
-import Cans from "./Cans/index";
+import Cans from "./Cans";
 
 import api from "../utils/api";
 
