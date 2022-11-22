@@ -1,8 +1,9 @@
 import React, { useState, Fragment } from "react";
-import { Button, Toast, ActionModal } from "@livechat/design-system";
+import { Button, ActionModal } from "@livechat/design-system";
 import MaterialIcon from "material-icons-react";
 import Spinner from "../Spinner";
 import EditModal from "./EditModal";
+import Can from "./Can";
 
 import "styled-components/macro";
 import api from "../../utils/api";
@@ -31,27 +32,9 @@ const helpStyle = `
   font-family: "Lucida Sans", sans-serif;
 `;
 
-const tagStyle = `
-  color: gray;
-  font-size: 12px;
-  margin-left: 5px;
-`;
-
 const linkStyle = `
   text-decoration: none;
   color: #4384f5;
-`;
-
-const toastStyle = `
-  box-shadow: none;
-  border: solid 1px hsl(0, 0%, 90%);
-`;
-
-const titleStyle = `
-  cursor: pointer;
-  :hover {
-    color: #4384f5;
-  }
 `;
 
 const buttonStyle = `
@@ -94,11 +77,11 @@ export default ({ cans, accessToken, update }) => {
       {canToRemove && (
         <ActionModal
           onClose={() => setCanToRemove(null)}
-          heading="Danger!"
+          heading="Delete this canned response"
           actions={
             <Fragment>
               <Button onClick={() => setCanToRemove(null)} css={buttonStyle}>
-                Wait, go back
+                Cancel
               </Button>
               <Button
                 onClick={() => {
@@ -115,14 +98,14 @@ export default ({ cans, accessToken, update }) => {
                 destructive
                 loading={loading}
               >
-                Yes, delete this can
+                Delete
               </Button>
             </Fragment>
           }
         >
           <div>
-            You’re about to do something that cannot be undone. Are you sure you
-            want to continue?
+            You are about to delete this canned response. This action can’t be
+            undone.
           </div>
         </ActionModal>
       )}
@@ -131,36 +114,18 @@ export default ({ cans, accessToken, update }) => {
           cans.map((can, i) => {
             const { id } = can;
             return (
-              <Toast
-                css={toastStyle}
+              <Can
                 key={i}
-                removable
-                onClose={() => {
+                title={can.text}
+                tags={can.tags}
+                onEdit={() => {
+                  setOpen(true);
+                  setUpdateCan(can);
+                }}
+                onDelete={() => {
                   setCanToRemove(id);
                 }}
-              >
-                <span
-                  css={titleStyle}
-                  onClick={() => {
-                    setOpen(true);
-                    setUpdateCan(can);
-                  }}
-                >
-                  {can.text}
-                  <MaterialIcon
-                    icon="create"
-                    color="hsl(0, 0%, 60%)"
-                    size={15}
-                  />
-                </span>
-                <div>
-                  {can.tags.map((tag, i) => (
-                    <span css={tagStyle} key={i}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Toast>
+              />
             );
           })
         ) : (

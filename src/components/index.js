@@ -20,12 +20,15 @@ const mainConatinerStyle = `
 
 const tabStyle = `
   background-color: white;
-  border: solid 1px hsl(0, 0%, 90%);
+  border-bottom: solid 1px hsl(0, 0%, 90%);
 `;
 
 const labelStyle = `
   display: flex;
   align-items: center;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
 `;
 
 const iconStyle = `
@@ -33,10 +36,16 @@ const iconStyle = `
   margin: 5px;
 `;
 
+const toastStyle = `
+  box-shadow: none;
+  border: solid 1px hsl(0, 0%, 90%);
+
+`;
+
 const App = ({ accessToken }) => {
   const [cans, setCans] = useState(null);
   const [tags, setTags] = useState(null);
-  const [tabId, setTabId] = useState("cans");
+  const [tabId, setTabId] = useState("tags");
 
   useEffect(() => {
     updateTags();
@@ -54,12 +63,17 @@ const App = ({ accessToken }) => {
         <TabsWrapper>
           <TabsList>
             <Tab
+              css={toastStyle}
               onSelect={() => setTabId("tags")}
               key={"tags"}
               isSelected={"tags" === tabId}
             >
               <div css={labelStyle}>
-                <img src="/icons/hash.png" css={iconStyle} alt="tag" />
+                <img
+                  src={`/icons/tag${"tags" === tabId ? `_active` : ``}.png`}
+                  css={iconStyle}
+                  alt="tag"
+                />
                 <span>Tags</span>
               </div>
             </Tab>
@@ -69,8 +83,12 @@ const App = ({ accessToken }) => {
               isSelected={"cans" === tabId}
             >
               <div css={labelStyle}>
-                <img src="/icons/can.png" css={iconStyle} alt="can" />
-                <span>Cans</span>
+                <img
+                  src={`/icons/can${"cans" === tabId ? `_active` : ``}.png`}
+                  css={iconStyle}
+                  alt="can"
+                />
+                <span>Canned responses</span>
               </div>
             </Tab>
           </TabsList>

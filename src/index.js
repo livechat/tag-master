@@ -13,6 +13,30 @@ const GlobalStyle = createGlobalStyle`
   ::-webkit-scrollbar {
       display: none;
   }
+  
+  .lc-tab--selected {
+    color: #4284F5;
+
+    &:hover {
+      color: #004bc2;
+    }
+  }
+
+  .lc-modal__body {
+    background-color: white;
+    border-bottom: solid 1px hsl(0,0%,90%);
+    border-top: solid 1px hsl(0,0%,90%);
+  }
+
+  .lc-input{
+    width: 100%;
+  }
+
+  .lc-modal__heading{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+  }
 `;
 
 const useLiveChat = ({ client_id, account_url }) => {
@@ -23,20 +47,19 @@ const useLiveChat = ({ client_id, account_url }) => {
     server_url: account_url,
   });
 
-  useEffect(async () => {
-    try {
-      const authorizeData = await accountsSDK.redirect().authorizeData();
+  useEffect(() => {
+    const authorize = async () => {
+      try {
+        const authorizeData = await accountsSDK.redirect().authorizeData();
 
-      accountsSDK.verify(authorizeData);
-      const { access_token } = authorizeData;
-      setAccessToken(access_token);
-    } catch (error) {
-      if (error.identity_exception === "unauthorized") {
+        accountsSDK.verify(authorizeData);
+        const { access_token } = authorizeData;
+        setAccessToken(access_token);
+      } catch (error) {
         await accountsSDK.redirect().authorize();
       }
-
-      console.error(error);
-    }
+    };
+    authorize();
   }, []);
 
   return [accessToken];

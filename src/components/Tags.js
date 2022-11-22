@@ -1,15 +1,13 @@
 import React, { useState, Fragment } from "react";
 import {
   Button,
-  Toast,
-  ModalBase,
-  Form,
-  FieldGroup,
+  Modal,
   InputField,
-  ActionModal
+  ActionModal,
 } from "@livechat/design-system";
 import MaterialIcon from "material-icons-react";
 import Spinner from "./Spinner";
+import Tag from "./Tag";
 
 import "styled-components/macro";
 import api from "../utils/api";
@@ -43,20 +41,6 @@ const linkStyle = `
   color: #4384f5;
 `;
 
-const contentStyle = `
-  margin: 15px auto;
-`;
-
-const toastStyle = `
-  border: solid 1px hsl(0, 0%, 90%);
-  box-shadow: none;
-`;
-
-const formStyle = `
-  display: grid;
-  justify-items: center;
-`;
-
 const buttonStyle = `
   margin-right: 10px 
 `;
@@ -69,7 +53,7 @@ export default ({ tags, update, accessToken }) => {
 
   const [tag, setTag] = useState("");
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     api
@@ -98,41 +82,46 @@ export default ({ tags, update, accessToken }) => {
         </span>
       </Button>
       {open && (
-        <ModalBase onClose={() => setOpen(false)}>
-          <div css={contentStyle}>
-            <Form
-              css={formStyle}
-              onSubmit={onSubmit}
-              labelText="Create tag"
-              helperText={"Fill fields with tag name"}
-              formFooter={
-                <Button primary submit loading={loading}>
-                  Add tag
-                </Button>
-              }
-            >
-              <FieldGroup>
-                <InputField
-                  id={"name"}
-                  value={tag}
-                  onChange={e => setTag(e.target.value)}
-                  placeholder="Tag name.."
-                  required
-                />
-              </FieldGroup>
-            </Form>
+        <Modal
+          onClose={() => setOpen(false)}
+          heading="Create tag"
+          footer={
+            <React.Fragment>
+              <Button
+                css={buttonStyle}
+                size="large"
+                onClick={() => setOpen(false)}
+                kind="secondary"
+              >
+                Close
+              </Button>
+              <Button primary size="large" onClick={onSubmit}>
+                Add tag
+              </Button>
+            </React.Fragment>
+          }
+        >
+          <div>
+            <InputField
+              id={"name"}
+              value={tag}
+              labelText="Tag name"
+              onChange={(e) => setTag(e.target.value)}
+              placeholder="Input tag name.."
+              required
+            />
           </div>
-        </ModalBase>
+        </Modal>
       )}
       {tagToRemove && (
         <ActionModal
           id={"actionModal"}
           onClose={() => setTagToRemove(null)}
-          heading="Danger!"
+          heading="Delete this tag"
           actions={
             <Fragment>
               <Button onClick={() => setTagToRemove(null)} css={buttonStyle}>
-                Wait, go back
+                Cancel
               </Button>
               <Button
                 onClick={() => {
@@ -149,14 +138,13 @@ export default ({ tags, update, accessToken }) => {
                 destructive
                 loading={loading}
               >
-                Yes, delete this tag
+                Delete
               </Button>
             </Fragment>
           }
         >
           <div>
-            You’re about to do something that cannot be undone. Are you sure you
-            want to continue?
+            You are about to delete this tag. This action can’t be undone.
           </div>
         </ActionModal>
       )}
@@ -165,16 +153,13 @@ export default ({ tags, update, accessToken }) => {
           tags.map((tag, i) => {
             const { name } = tag;
             return (
-              <Toast
-                css={toastStyle}
+              <Tag
                 key={i}
-                removable
-                onClose={() => {
+                title={name}
+                onDelete={() => {
                   setTagToRemove(name);
                 }}
-              >
-                #{name}
-              </Toast>
+              />
             );
           })
         ) : (

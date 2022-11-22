@@ -1,49 +1,9 @@
 import React, { useState } from "react";
-import {
-  Button,
-  ModalBase,
-  Form,
-  FieldGroup,
-  InputField
-} from "@livechat/design-system";
+import { Button, Modal, InputField } from "@livechat/design-system";
 import MaterialIcon from "material-icons-react";
 
 import "styled-components/macro";
 import api from "../../utils/api";
-
-const contentStyle = `
-  margin: 15px auto;
-`;
-
-const formStyle = `
-  display: grid;
-  grid-template-rows: 70px auto 38px; 
-  grid-gap: 15px;
-  justify-items: center;
-`;
-
-const formContainer = `
-  width: 189px;
-  display: grid;
-  grid-gap: 5px;
-  grid-template:
-    "content content" 38px
-    "input btn" 38px
-    "tags tags" auto
-    / 100px 80px;
-`;
-
-const contentInputStyle = `
-  margin: 0;
-  grid-area: content;
-`;
-
-const tagInputStyle = `
-  grid-area: input;
-  > div > input {
-    width: 100px !important;
-  }
-`;
 
 const tagButtonStyle = `
   grid-area: btn;
@@ -52,18 +12,20 @@ const tagButtonStyle = `
 `;
 
 const tagsContainerStyle = `
-  grid-area: tags;
   font-size: 15px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
 
   > span {
-  margin: 5px;
+   margin: 5px 0px;
+   color: #424D57;
   }
 `;
 
 const tagElementStyle = `
   display: flex;
+  justify-content: space-between;
   align-items: center;
 `;
 
@@ -74,19 +36,43 @@ const deleteIconStyle = `
   }
 `;
 
+const buttonStyle = `
+  margin-right: 10px 
+`;
+
+const tagStyle = `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  >div {
+    width: 75%;
+  }
+
+  >button {
+    margin-top: 4px;
+  }
+`;
+
+const tagHeadingStyle = `
+  font-size: 16px;
+  color: #424d59;
+  line-height: 20px;
+`;
+
 export default ({
   can = { tags: [], text: "" },
   setOpen,
   update,
   setCan,
-  accessToken
+  accessToken,
 }) => {
   const [tags, setTags] = useState([...can.tags]);
   const [content, setContent] = useState(can.text);
   const [currentTag, setCurrentTag] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     const apiRequest = can.id
@@ -106,76 +92,79 @@ export default ({
   };
 
   return (
-    <ModalBase
+    <Modal
       onClose={() => {
         setOpen(false);
         resetState();
       }}
+      heading={can.text ? "Update canned response" : "Create canned response"}
+      footer={
+        <React.Fragment>
+          <Button
+            css={buttonStyle}
+            size="large"
+            onClick={() => setOpen(false)}
+            kind="secondary"
+          >
+            Close
+          </Button>
+          <Button primary size="large" onClick={onSubmit} loading={loading}>
+            {can.text ? "Update" : "Create"}
+          </Button>
+        </React.Fragment>
+      }
     >
-      <div css={contentStyle}>
-        <Form
-          css={formStyle}
-          onSubmit={onSubmit}
-          labelText={
-            can.text ? "Update canned response" : "Create canned response"
-          }
-          helperText={"Fill fields with content and tags"}
-          formFooter={
-            <Button primary submit loading={loading}>
-              {can.text ? "Update can" : "Add can"}
-            </Button>
-          }
-        >
-          <FieldGroup>
-            <div css={formContainer}>
-              <InputField
-                id={"content"}
-                value={content}
-                onChange={e => setContent(e.target.value)}
-                placeholder="Content.."
-                required
-                css={contentInputStyle}
-              />
-              <InputField
-                id={"tag"}
-                onChange={e => setCurrentTag(e.target.value)}
-                placeholder="Tag.."
-                value={currentTag}
-                css={tagInputStyle}
-              />
-              <Button
-                primary
-                onClick={() => {
-                  if (currentTag) {
-                    setTags([...tags, currentTag]);
-                  }
-                  setCurrentTag("");
-                }}
-                css={tagButtonStyle}
-              >
-                Add
-              </Button>
-              <div css={tagsContainerStyle}>
-                {tags.map((tag, i) => {
-                  return (
-                    <span key={i} css={tagElementStyle}>
-                      {tag.length >= 7 ? `${tag.substring(7)}..` : tag}
-                      <span
-                        css={deleteIconStyle}
-                        onClick={() => {
-                          setTags([...tags].filter(element => element !== tag));
-                        }}
-                      >
-                        <MaterialIcon icon="delete_forever" />
-                      </span>
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          </FieldGroup>
-        </Form>
-      </div>
-    </ModalBase>
+      <>
+        <div>
+          <InputField
+            id={"name"}
+            value={content}
+            labelText="Canned response text"
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="Input canned response text"
+            required
+          />
+        </div>
+        <div css={tagStyle}>
+          <InputField
+            id={"tag"}
+            value={currentTag}
+            labelText="Canned response shortcut"
+            onChange={(e) => setCurrentTag(e.target.value)}
+            placeholder="Input shortcut"
+            required
+          />
+          <Button
+            onClick={() => {
+              if (currentTag) {
+                setTags([...tags, currentTag]);
+              }
+              setCurrentTag("");
+            }}
+            css={tagButtonStyle}
+          >
+            Add
+          </Button>
+        </div>
+        <span css={tagHeadingStyle}>Added tags</span>
+        <div css={tagsContainerStyle}>
+          {tags.map((tag, i) => {
+            return (
+              <span key={i} css={tagElementStyle}>
+                #{tag}
+                <span
+                  css={deleteIconStyle}
+                  onClick={() => {
+                    setTags([...tags].filter((element) => element !== tag));
+                  }}
+                >
+                  <MaterialIcon icon="delete_forever" />
+                </span>
+              </span>
+            );
+          })}
+        </div>
+      </>
+    </Modal>
   );
 };
