@@ -3,7 +3,6 @@ import { TabsWrapper, TabsList, Tab } from "@livechat/design-system";
 import "styled-components/macro";
 
 import Tags from "./Tags";
-import Cans from "./Cans";
 
 import api from "../utils/api";
 
@@ -43,17 +42,13 @@ const toastStyle = `
 `;
 
 const App = ({ accessToken }) => {
-  const [cans, setCans] = useState(null);
   const [tags, setTags] = useState(null);
   const [tabId, setTabId] = useState("tags");
 
   useEffect(() => {
     updateTags();
-    updateCans();
   }, []);
 
-  const updateCans = () =>
-    api.fetchCans(accessToken).then((response) => setCans(response.data));
   const updateTags = () =>
     api.fetchTags(accessToken).then((response) => setTags(response.data));
 
@@ -77,28 +72,11 @@ const App = ({ accessToken }) => {
                 <span>Tags</span>
               </div>
             </Tab>
-            <Tab
-              onSelect={() => setTabId("cans")}
-              key={"cans"}
-              isSelected={"cans" === tabId}
-            >
-              <div css={labelStyle}>
-                <img
-                  src={`/icons/can${"cans" === tabId ? `_active` : ``}.png`}
-                  css={iconStyle}
-                  alt="can"
-                />
-                <span>Canned responses</span>
-              </div>
-            </Tab>
           </TabsList>
         </TabsWrapper>
       </div>
       {tabId === "tags" && (
         <Tags tags={tags} update={updateTags} accessToken={accessToken} />
-      )}
-      {tabId === "cans" && (
-        <Cans cans={cans} update={updateCans} accessToken={accessToken} />
       )}
     </div>
   );

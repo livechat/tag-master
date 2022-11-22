@@ -66,6 +66,18 @@ export default ({ tags, update, accessToken }) => {
       });
   };
 
+  const onDelete = () => {
+    setRemove([...remove, tagToRemove]);
+    setLoading(true);
+    api
+      .removeTag(tagToRemove, accessToken)
+      .then(() => update())
+      .then(() => {
+        setTagToRemove(null);
+        setLoading(false);
+      });
+  };
+
   return (
     <div css={containerStyle}>
       <Button primary onClick={() => setOpen(true)}>
@@ -123,21 +135,7 @@ export default ({ tags, update, accessToken }) => {
               <Button onClick={() => setTagToRemove(null)} css={buttonStyle}>
                 Cancel
               </Button>
-              <Button
-                onClick={() => {
-                  setRemove([...remove, tagToRemove]);
-                  setLoading(true);
-                  api
-                    .removeTag(tagToRemove, accessToken)
-                    .then(() => update())
-                    .then(() => {
-                      setTagToRemove(null);
-                      setLoading(false);
-                    });
-                }}
-                destructive
-                loading={loading}
-              >
+              <Button onClick={onDelete} destructive loading={loading}>
                 Delete
               </Button>
             </Fragment>
