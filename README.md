@@ -8,7 +8,7 @@
 
 # Preview
 ​
-![Alt Text](https://i.ibb.co/f9t4RFW/tagmaster.png)
+![LiveChat Tag Master app preview](https://cdn.livechat-files.com/api/file/developers/img/dps/21351ec2-fa9f-4ee7-b9bb-df0af67aab56.png)
 
 # Code along
 
@@ -22,7 +22,7 @@ This is a training application that we use in our video course: [the Practical G
 - How to excel at the LiveChat app review.
 - Monetization options at the LiveChat Developer Program.
 
-If this sparks your interest, be sure to visit [the course website](https://developers.livechat.com/building-apps-crash-course/).
+If this sparks your interest, be sure to visit [the course website](https://developers.livechat.com/building-apps-crash-course/)!
 
 ## Branch breakdown
 
