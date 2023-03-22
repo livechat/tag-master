@@ -43,8 +43,8 @@ To use this application in your LiveChat dashboard, you'll need to create your o
 
 1. Go to [Apps](https://developers.livechatinc.com/console/apps) in [Developers Console](https://developers.livechatinc.com/console).
 2. Click **New App** and give it an **App Name**.
-3. Select _Agent App Widget_ as the **App Template**.
-4. Go to **Develop -> Building Blocks**.
+3. Choose the **LiveChat** product as the product you want to build for.
+4. Go to **Building Blocks**.
 5. Add **App Authorization** and mark it as _JavaScript App_. Your **Client Id** will be displayed there.
 6. Add scopes `canned_responses_read`, `canned_responses_write`, `tags--all:rw`, `tags--groups:rw` to the **App scopes and API access** box.
 7. Fetch the **Tag Master** app repository.
@@ -65,13 +65,19 @@ You should now be able to use **Tag Master** with LiveChat.
 
 # How it works
 
-[Agent App Widgets](https://docs.livechatinc.com/agent-app-widgets/) are web applications loaded inside the LiveChat Agent App. All agents can interact with the widget during chats with customers. The widget itself is displayed in the Agent’s App right sidebar.
+[Agent App Widgets](https://developers.livechat.com/docs/extending-agent-app) are web applications loaded inside the LiveChat Agent App. All agents can interact with the widget during chats with customers. The widget itself is displayed in the Agent’s App right sidebar.
 
-To get information such as tags and canned responses, you need to use [LiveChat Rest API](https://docs.livechatinc.com/rest-api/).
+To get information such as tags, you need to use [Configuration API](https://developers.livechat.com/docs/management/configuration-api).
 
-In order to pull data from our server, Rest API requires you to include an **access_token** in all the requests. You can get it using [LiveChat Boilerplate](https://docs.livechatinc.com/boilerplate/) and [JavaScript Widget API](https://docs.livechatinc.com/agent-app-widgets/#javascript-api).
+In order to pull data from our server, you need to include an **access_token** in all the requests. You can get it using one of the [agent authorization flows](https://developers.livechat.com/docs/authorization/agent-authorization).
 
-You should also get familiar with [Authorization](https://docs.livechatinc.com/authorization/).
+# More sample apps
+
+Experiment more with our different sample apps:
+ - [Progress](https://github.com/livechat/progress-app) - widget for helping you monitor statistics of your team, such as chat ratings, response times, and chatting times.
+ - [Supervisor](https://github.com/livechat/supervisor-app) - widget for helping you monitor weekly progress of your agents and also their availability.
+ - [Sample Redirect App with the redirect authorization flow](https://github.com/livechat/sample-app-redirect-auth)
+ - [Sample Popup App with the popup authorization flow](https://github.com/livechat/sample-app-popup-auth)
 
 # Feedback
 
@@ -79,7 +85,7 @@ If you find some bugs, please create an issue in this repo. We'll try to fix it 
 
 # If you're new to LiveChat
 
-**LiveChat** is an online customer service software with live support, help desk software, and web analytics capabilities. It's used by more than 37,000 companies all over the world. For more info, check out [LiveChat for Developers](https://developers.livechatinc.com/).
+**LiveChat** is an online customer service software with live support, help desk software, and web analytics capabilities. It's used by more than 37,000 companies all over the world. Read more about [LiveChat for Developers](https://developers.livechatinc.com/) and [join our Discord](https://discord.com/invite/NcfJu3a9kM) to learn, get inspired, and meet other developers.
 
 ---
 
