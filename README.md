@@ -2,12 +2,10 @@
 
 # Tag Master
 
-<!--It's a simple application that shows how to create an Agent App extension with the use of the **LiveChat Rest API**.-->
-
-**Tag Master** allows you to create, view, and delete [tags](https://www.livechatinc.com/kb/tagging-chats-and-tickets/) and [canned responses](https://www.livechatinc.com/kb/canned-responses/) in an easy and predictable way.
+**Tag Master** allows you to create, view, and delete [tags](https://platform.text.com/docs/management/configuration-api#tags) and [canned responses](https://www.livechat.com/help/set-canned-responses/) in an easy and predictable way.
 
 # Preview
-​
+
 ![LiveChat Tag Master app preview](https://cdn.livechat-files.com/api/file/developers/img/dps/21351ec2-fa9f-4ee7-b9bb-df0af67aab56.png)
 
 # Code along
@@ -16,11 +14,11 @@ This is a training application that we use in our video course: [the Practical G
 
 - How to create an app from start to finish.
 - Best programming practices.
-- How to effectively use the LiveChat API.
+- How to effectively use the [LiveChat API](https://platform.text.com/docs).
 - Superb developer tools to facilitate your workflow.
 - Different hosting options and how to use them.
 - How to excel at the LiveChat app review.
-- Monetization options at the LiveChat Developer Program.
+- Monetization options at the [LiveChat Developer Program](https://platform.text.com/developer-program).
 
 If this sparks your interest, be sure to visit [the course website](https://developers.livechat.com/building-apps-crash-course/)!
 
@@ -30,18 +28,18 @@ For the video course purposes, this repository is divided into four branches:
 
 1. `master`: This branch includes the whole code for this application where both API functionalities and authorization are implemented.
 2. `base`: This branch includes basic files such as `index.js` and `package.json` so you can smoothly begin working on the project.
-3. `authorization`: This branch includes implemented [LiveChat Accounts SDK](https://developers.livechat.com/docs/authorization/sign-in-with-livechat#accounts-sdk) authorization.
-4. `apiCalls`: This branch includes implemented communication with the [LiveChat Configuration API](https://developers.livechat.com/docs/management/configuration-api).
+3. `authorization`: This branch includes implemented [LiveChat Accounts SDK](https://platform.text.com/docs/authorization/sign-in-with-livechat#accounts-sdk) authorization.
+4. `apiCalls`: This branch includes implemented communication with the [LiveChat Configuration API](https://platform.text.com/docs/management/configuration-api).
 
 # App setup
 
 ## Before you start
 
-To use this application in your LiveChat dashboard, you'll need to create your own app in [Developers Console](https://developers.livechatinc.com/console) and get the **Client Id**.
+To use this application in your LiveChat dashboard, you'll need to create your own app in the [Developer Console](https://platform.text.com/console/) and get the **Client Id**.
 
 ## Getting started
 
-1. Go to [Apps](https://developers.livechatinc.com/console/apps) in [Developers Console](https://developers.livechatinc.com/console).
+1. Go to [Apps](https://platform.text.com/console/apps) in [Developers Console](https://platform.text.com/console/).
 2. Click **New App** and give it an **App Name**.
 3. Choose the **LiveChat** product as the product you want to build for.
 4. Go to **Building Blocks**.
@@ -65,11 +63,11 @@ You should now be able to use **Tag Master** with LiveChat.
 
 # How it works
 
-[Agent App Widgets](https://developers.livechat.com/docs/extending-agent-app) are web applications loaded inside the LiveChat Agent App. All agents can interact with the widget during chats with customers. The widget itself is displayed in the Agent’s App right sidebar.
+[Agent App Widgets](https://platform.text.com/docs/extending-agent-app) are web applications loaded inside the LiveChat Agent App. All agents can interact with the widget during chats with customers. The widget itself is displayed in the Agent’s App right sidebar.
 
-To get information such as tags, you need to use [Configuration API](https://developers.livechat.com/docs/management/configuration-api).
+To get information such as tags, you need to use [Configuration API](https://platform.text.com/docs/management/configuration-api).
 
-In order to pull data from our server, you need to include an **access_token** in all the requests. You can get it using one of the [agent authorization flows](https://developers.livechat.com/docs/authorization/agent-authorization).
+In order to pull data from our server, you need to include an **access_token** in all the requests. You can get it using one of the [agent authorization flows](https://platform.text.com/docs/authorization/agent-authorization).
 
 # More sample apps
 
@@ -83,9 +81,15 @@ Experiment more with our different sample apps:
 
 If you find some bugs, please create an issue in this repo. We'll try to fix it ASAP!
 
-# If you're new to LiveChat
+# [Text Platform](https://platform.text.com/): who are we?
 
-**LiveChat** is an online customer service software with live support, help desk software, and web analytics capabilities. It's used by more than 37,000 companies all over the world. Read more about [LiveChat for Developers](https://developers.livechatinc.com/) and [join our Discord](https://discord.com/invite/NcfJu3a9kM) to learn, get inspired, and meet other developers.
+Behind [Text](https://www.text.com/), there’s a [team of passionate people](https://www.text.com/team/) building online customer service software with online chat, help desk software, chatbot, and web analytics capabilities.
+
+With a suite of five products ([LiveChat](https://www.livechat.com), [ChatBot](https://chatbot.com/), [HelpDesk](https://helpdesk.com/), [KnowledgeBase](https://www.knowledgebase.com/), and [OpenWidget](https://openwidget.com/)) and their powerful APIs, we power customer communication for 36,000 companies in 150 countries.
+
+[The Platform](https://platform.text.com/) is a range of products and services that can be used to build a variety of communication tools for businesses. Our [Developer Program](https://platform.text.com/developer-program) and [Marketplace](https://www.livechat.com/marketplace/) create an open ecosystem for developers, partners, and customers. With our [advanced APIs](https://platform.text.com/) and comprehensive [documentation](https://platform.text.com/docs), you can shape the future of communication with us — starting today.
+
+[Join our Discord](https://discord.com/invite/NcfJu3a9kM) to learn, get inspired, and meet other developers!
 
 ---
 
